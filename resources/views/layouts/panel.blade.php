@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app-class.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -69,7 +70,7 @@
                 @endif
               </div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body padding-top-0">
               @yield('panel-body')
             </div>
             @yield('panel-footer')
