@@ -3,9 +3,8 @@
     <thead>
       <tr class="active">
         <th scope="col" class="col-md-1">Ordem</th>
-        <th scope="col" class="col-md-9">Nome do Todo</th>
+        <th scope="col" class="col-md-9">Nome da tarefa</th>
         <th scope="col" >% Completo</th>
-        <th scope="col" >Responsável</th>
         <th scope="col" class="col-md-1">Ações</th>
       </tr>
     </thead>
@@ -20,16 +19,13 @@
           </td>
           <td data-label="Completo">
             <div class="progress">
-              <div  class="progress-bar progress-bar-success" role="progressbar" 
-                    aria-valuenow="{{$todo->percentage}}" aria-valuemin="0" 
-                    aria-valuemax="100" style="width: {{$todo->percentage}}%">
+              <div  class="progress-bar progress-bar-success" role="progressbar"
+                  aria-valuenow="{{$todo->percentage}}" aria-valuemin="0" 
+                  aria-valuemax="100" style="width: {{$todo->percentage}}%">
                 {{$todo->percentage}} %
                 <span class="sr-only">{{$todo->percentage}}% Complete (success)</span>
               </div>
             </div>
-          </td>
-          <td data-label="Responsável">
-            {{$todo->user_id}}
           </td>
           <td data-label="Ações">
             <span class="input-group-btn input-group">
