@@ -70,7 +70,7 @@
                 @endif
               </div>
             </div>
-            <div class="panel-body padding-top-0">
+            <div class="panel-body">
               @yield('panel-body')
             </div>
             @yield('panel-footer')

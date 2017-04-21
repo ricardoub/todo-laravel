@@ -28,3 +28,7 @@ Route::group(['prefix' => 'todos', 'as' => 'todos.'], function() {
   Route::post('update/{id}', ['as' => 'update',  'uses' => 'TodoController@update']);
   Route::post('destroy/{id}',['as' => 'destroy', 'uses' => 'TodoController@destroy']);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
