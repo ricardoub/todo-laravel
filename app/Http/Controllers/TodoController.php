@@ -51,7 +51,14 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+      $formReadOnly = 'disabled';
+
+      $todo = Todo::find($id);
+      if (is_null($todo)) {
+        return redirect()->route('todos.index')
+          ->withErros(['Registro não localizado']);
+      }
+      return view('todos.show')->with(compact('formReadOnly', 'todo'));
     }
 
     /**
