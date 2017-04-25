@@ -16,6 +16,7 @@ class TodoController extends Controller
     $buttonHrefs['home']     = 'home';
     $buttonHrefs['listar']   = 'todos.index';
     $buttonHrefs['incluir']  = 'todos.create';
+    $buttonHrefs['excluir']  = 'todos.delete';
     $buttonHrefs['exibir']   = 'todos.show';
     $buttonHrefs['editar']   = 'todos.edit';
     $buttonHrefs['cancelar'] = 'todos.show';
@@ -34,8 +35,8 @@ class TodoController extends Controller
     return $formActions;
   }
 
-  private function findCombo($id) {
-    return Combo::find($id);
+  private function findTodo($id) {
+    return Todo::find($id);
   }
 
   /**
@@ -46,8 +47,8 @@ class TodoController extends Controller
   public function index()
   {
     $buttonHrefs  = $this->getButtonHrefs();
+
     $todos = Todo::where('user_id', Auth::user()->id)->paginate(10);
-    //return view('todos.index')->with(compact('todos'));
     return view('todos.index')
       ->with([
         'listModels'  => $todos,
@@ -88,7 +89,7 @@ class TodoController extends Controller
     $buttonHrefs  = $this->getButtonHrefs();
     $formActions  = $this->getFormActions();
 
-    $todo = Todo::find($id);
+    $todo = $this->findTodo($id);
     if (is_null($todo)) {
       return redirect()->route('todos.index')
         ->withErros(['Registro não localizado']);

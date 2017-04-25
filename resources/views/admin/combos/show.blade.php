@@ -19,7 +19,6 @@
 
 @section('panel-body')
     @include('partials.messages')
-    @include('admin.combos.partials.excluir')
     @include('admin.combos.partials.form')
 @endsection
 
