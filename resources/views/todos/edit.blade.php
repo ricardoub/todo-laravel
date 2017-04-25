@@ -1,11 +1,11 @@
 @extends('layouts.panel')
 
 @section('panel-head-middle')
-  <button type="button" class="btn btn-default btn-title" disabled>
-    <i class="fa fa-tasks"></i>
-    Exibir
-    <span class="hidden-xs hidden-sm"> Tarefa </span>
-  </button>
+    <button type="button" class="btn btn-default btn-title" disabled>
+        <i class="fa fa-tasks"></i>
+        Editar
+        <span class="hidden-xs hidden-sm"> Tarefa </span>
+    </button>
 @endsection
 
 @section('panel-head-left')
@@ -13,8 +13,8 @@
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-href-editar')
-    @include('partials.buttons.button-href-excluir')
+    @include('partials.buttons.button-form-salvar')
+    @include('partials.buttons.button-modal-excluir')
 @endsection
 
 @section('panel-body')

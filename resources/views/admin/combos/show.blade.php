@@ -1,11 +1,11 @@
 @extends('layouts.panel')
 
 @section('panel-head-middle')
-  <button type="button" class="btn btn-default btn-title" disabled>
-    <i class="fa fa-tasks"></i>
-    Exibir
-    <span class="hidden-xs hidden-sm"> Tarefa </span>
-  </button>
+    <button type="button" class="btn btn-default btn-title" disabled>
+        <i class="fa fa-tasks"></i>
+        Exibir
+        <span class="hidden-xs hidden-sm"> Tarefa </span>
+    </button>
 @endsection
 
 @section('panel-head-left')
@@ -19,7 +19,7 @@
 
 @section('panel-body')
     @include('partials.messages')
-    @include('todos.partials.form')
+    @include('admin.combos.partials.form')
 @endsection
 
 @section('scripts')

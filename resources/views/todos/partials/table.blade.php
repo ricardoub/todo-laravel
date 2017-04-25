@@ -9,27 +9,27 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($todos as $todo)
+      @foreach($listModels as $model)
         <tr>
           <td data-label="Ordem">
-            {{$todo->order}}
+            {{$model->order}}
           </td>
           <td data-label="Nome Tarefa" class="text-left">
-            {{$todo->name}}
+            {{$model->name}}
           </td>
           <td data-label="Completo">
             <div class="progress">
               <div  class="progress-bar progress-bar-success" role="progressbar"
-                  aria-valuenow="{{$todo->percentage}}" aria-valuemin="0" 
-                  aria-valuemax="100" style="width: {{$todo->percentage}}%">
-                {{$todo->percentage}} %
-                <span class="sr-only">{{$todo->percentage}}% Complete (success)</span>
+                  aria-valuenow="{{$model->percentage}}" aria-valuemin="0"
+                  aria-valuemax="100" style="width: {{$model->percentage}}%">
+                {{$model->percentage}} %
+                <span class="sr-only">{{$model->percentage}}% Complete (success)</span>
               </div>
             </div>
           </td>
           <td data-label="Ações">
             <span class="input-group-btn input-group">
-              <a class="btn btn-default" href="{{ route('todos.show', $todo->id) }}">
+              <a class="btn btn-default" href="{{ route('todos.show', $model->id) }}">
                 <i class="fa fa-folder-open-o fa-fw"></i>
                 <span class="hidden-xs hidden-sm">
                   Exibir

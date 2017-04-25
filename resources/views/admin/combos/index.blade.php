@@ -2,9 +2,9 @@
 
 @section('panel-head-middle')
     <button type="button" class="btn btn-default btn-title" disabled>
-        <i class="fa fa-tasks"></i>
+        <i class="fa fa-list"></i>
         Listar
-        <span class="hidden-xs hidden-sm"> Todo's </span>
+        <span class="hidden-xs hidden-sm"> Caixa de seleção </span>
     </button>
 @endsection
 
@@ -18,7 +18,7 @@
 
 @section('panel-body')
     @include('partials.messages')
-    @include('todos.partials.table')
+    @include('admin.combos.partials.table')
 @endsection
 
 @section('scripts')

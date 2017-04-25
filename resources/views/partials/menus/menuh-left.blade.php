@@ -12,28 +12,26 @@
         Todo's
       </a>
     </li>
-    <li class="dropdown disabled">
+    <li class="dropdown">
       <a tabindex="0" data-toggle="dropdown" data-submenu="">
         Administração<span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li class="dropdown-submenu disabled">
+        <li class="dropdown-submenu">
           <a tabindex="0">
             Cadastros
           </a>
           <ul class="dropdown-menu">
-            <li class="dropdown-header">-</li>
             <li>
-              <a tabindex="0">
-                <i class="fa fa-truck fa-fw"></i>
-                Coletas de materiais
+              <a tabindex="0" href="{{ route('combos.index') }}">
+                <i class="fa fa-list fa-fw"></i>
+                Caixa de seleção
+                <small> - Select</small>
               </a>
             </li>
-            <li><a tabindex="0">Etiquetas</a></li>
-            <li class="divider"></li>
-            <li><a tabindex="0">Arquivos</a></li>
           </ul>
         </li>
+        <li class="divider"></li>
         <li class="dropdown-submenu disabled">
           <a tabindex="0" class="">
             Trilha auditoria
