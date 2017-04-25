@@ -3,22 +3,24 @@
 @section('panel-head-middle')
     <button type="button" class="btn btn-default btn-title" disabled>
         <i class="fa fa-tasks"></i>
-        Listar
-        <span class="hidden-xs hidden-sm"> Todo's </span>
+        Exibir
+        <span class="hidden-xs hidden-sm"> Tarefa </span>
     </button>
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.button-href-home')
+    @include('partials.buttons.button-href-listar')
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-href-incluir')
+    @include('partials.buttons.button-href-editar')
+    @include('partials.buttons.button-href-excluir')
 @endsection
 
 @section('panel-body')
     @include('partials.messages')
-    @include('todos.partials.table')
+    @include('admin.combos.partials.excluir')
+    @include('admin.combos.partials.form')
 @endsection
 
 @section('scripts')

@@ -11,3 +11,10 @@
 .table {
   margin: 0px;
 }
+
+.form-actions {
+  border-top: 1px;
+}
+.form-alerts {
+  margin-top: 20px;
+}

@@ -6,7 +6,7 @@
       <span class="input-group-addon">
         <i class="fa fa-tasks fa-fw"></i>
       </span>
-      {{ Form::text('name', $todo->name, ['class' => 'form-control', 'placeholder' => 'Nome da tarefa', 'disabled' => $formReadOnly]) }}
+      {{ Form::text('name', $formModel->name, ['class' => 'form-control', 'placeholder' => 'Nome da tarefa', 'disabled' => $formActions['edit']]) }}
     </div>
   </div>
 </div>

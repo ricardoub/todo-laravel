@@ -7,12 +7,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <!--link href="{{ asset('css/app.css') }}" rel="stylesheet"-->
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-submenu.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app-class.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
@@ -27,7 +29,7 @@
       <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            
+
             <!-- Collapsed Hamburger -->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
               <span class="sr-only">Toggle Navigation</span>
@@ -45,7 +47,7 @@
           <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             @include('partials.menus.menuh-left')
-            
+
             <!-- Right Side Of Navbar -->
             @include('partials.menus.menuh-right')
           </div>
@@ -80,6 +82,9 @@
     </div>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-submenu.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
   </body>
 </html>

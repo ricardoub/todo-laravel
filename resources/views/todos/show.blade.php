@@ -1,20 +1,20 @@
 @extends('layouts.panel')
 
-@section('panel-head-left')
-    @include('partials.buttons.button-previous')
+@section('panel-head-middle')
+  <button type="button" class="btn btn-default btn-title" disabled>
+    <i class="fa fa-tasks"></i>
+    Exibir
+    <span class="hidden-xs hidden-sm"> Tarefa </span>
+  </button>
 @endsection
 
-@section('panel-head-middle')
-    <button type="button" class="btn btn-default btn-title" disabled>
-        <i class="fa fa-tasks"></i>
-        Exibir
-        <span class="hidden-xs hidden-sm"> Tarefa </span>
-    </button>
+@section('panel-head-left')
+    @include('partials.buttons.button-href-listar')
 @endsection
 
 @section('panel-head-right')
-    @include('todos.partials.button-editar')
-    @include('partials.buttons.button-excluir')
+    @include('partials.buttons.button-href-editar')
+    @include('partials.buttons.button-modal-excluir')
 @endsection
 
 @section('panel-body')
