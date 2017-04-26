@@ -1,0 +1,20 @@
+.padding-top-0 {
+  padding-top: 0px;
+}
+.padding-bottom-0 {
+  padding-bottom: 0px;
+}
+.panel-body {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.table {
+  margin: 0px;
+}
+
+.form-actions {
+  border-top: 1px;
+}
+.form-alerts {
+  margin-top: 20px;
+}

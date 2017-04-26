@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -15,3 +13,17 @@
     </div>
 </div>
 @endsection
+
+@extends('layouts.panel')
+
+@section('panel-head-middle')
+  Dashboard
+@endsection
+
+@section('panel-body')
+    You are logged in!
+@endsection
+
+@section('scripts')
+   <!--<script src="/js/todos.js"></script>-->
+@stop

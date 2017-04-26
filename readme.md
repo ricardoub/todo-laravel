@@ -38,6 +38,7 @@ The Todo's application is open-sourced software licensed under the [MIT license]
    * cd todo-laravel
 3. Install the project dependencies via composer
    * composer install
+   * bower install
 4. Create de application key
    * php artisan app:name Todo
 4. Changing the Settings in the .env file
