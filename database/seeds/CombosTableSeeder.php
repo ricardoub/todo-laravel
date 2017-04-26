@@ -88,7 +88,7 @@ class CombosTableSeeder extends Seeder
       [
         'name'  => 'status',
         'value'  => '1',
-        'option' => 'Incluído'
+        'option' => 'Aberto'
       ],
       [
         'name'  => 'status',

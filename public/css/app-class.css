@@ -18,3 +18,27 @@
 .form-alerts {
   margin-top: 20px;
 }
+.progress {
+  height: 30px;
+  margin: 0px;
+}
+.progress-bar {
+    height: 30px;
+    margin: 0px;
+    line-height: 30px;
+}
+/*
+progress-bar {
+    background-color: #337ab7;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+    color: #fff;
+    float: left;
+    font-size: 12px;
+    height: 30px;
+    margin: 0px;
+    line-height: 30px;
+    text-align: center;
+    transition: width 0.6s ease 0s;
+    width: 0;
+}
+*/

@@ -3,7 +3,7 @@
 @section('panel-head-middle')
   <button type="button" class="btn btn-default btn-title" disabled>
     <i class="fa fa-tasks"></i>
-    Exibir
+    Excluir
     <span class="hidden-xs hidden-sm"> Tarefa </span>
   </button>
 @endsection
@@ -13,12 +13,19 @@
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-href-editar')
 @endsection
 
 @section('panel-body')
     @include('partials.messages')
-    @include('todos.partials.form')
+    {{ Form::model($formModel, ['route' => [$formActions['destroy'], $formModel->id]]) }}
+      @include('todos.partials.form')
+      <div class="text-center">
+        <div class="btn-group" >
+          @include('partials.buttons.button-excluir-form')
+        </div>
+      </div>
+    {{ Form::close() }}
+    <br>
 @endsection
 
 @section('scripts')
