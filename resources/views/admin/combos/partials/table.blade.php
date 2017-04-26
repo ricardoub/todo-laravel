@@ -26,7 +26,8 @@
           </td>
           <td data-label="Ações">
             <span class="input-group-btn input-group">
-              @include('partials.buttons.button-href-exibir')
+              @include('partials.buttons.button-exibir-listar')
+              @include('partials.buttons.button-excluir-listar')
             </span>
           </td>
         </tr>

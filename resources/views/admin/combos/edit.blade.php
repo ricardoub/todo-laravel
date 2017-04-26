@@ -20,8 +20,8 @@
       @include('admin.combos.partials.form')
       <div class="text-center">
         <div class="btn-group" >
-          @include('partials.buttons.button-href-cancelar')
-          @include('partials.buttons.button-salvar')
+          @include('partials.buttons.button-cancelar-form')
+          @include('partials.buttons.button-salvar-form')
         </div>
       </div>
     {{ Form::close() }}

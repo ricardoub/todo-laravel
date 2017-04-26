@@ -9,12 +9,11 @@
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.button-href-listar')
+    @include('partials.buttons.button-listar-panel')
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-editar-listar')
-    @include('partials.buttons.button-excluir-listar')
+    @include('partials.buttons.button-editar-panel')
 @endsection
 
 @section('panel-body')
