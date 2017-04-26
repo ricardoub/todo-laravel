@@ -13,8 +13,8 @@
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-href-editar')
-    @include('partials.buttons.button-href-excluir')
+    @include('partials.buttons.button-editar-listar')
+    @include('partials.buttons.button-excluir-listar')
 @endsection
 
 @section('panel-body')

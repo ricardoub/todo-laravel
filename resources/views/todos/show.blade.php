@@ -14,7 +14,6 @@
 
 @section('panel-head-right')
     @include('partials.buttons.button-href-editar')
-    @include('partials.buttons.button-href-excluir')
 @endsection
 
 @section('panel-body')
