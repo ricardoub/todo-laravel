@@ -13,7 +13,7 @@ class TodoFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,26 @@ class TodoFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
-            //
-        ];
-    }
+     public function rules()
+     {
+       return [
+         'name'       => 'required',
+         'priority'   => 'required|numeric|min:1',
+         'percentage' => 'required|numeric|min:0|max:100'
+       ];
+     }
+
+     public function messages()
+     {
+       return [
+         'name.required'       => 'O campo nome é obrigatório',
+         'priority.required'   => 'O campo ordem é obrigatório',
+         'priority.numeric'    => 'O campo ordem deve ser numérico',
+         'priority.min'        => 'O campo ordem deve ser igual ou maior que 1',
+         'percentage.required' => 'O campo opção é obrigatório',
+         'percentage.numeric'  => 'O campo porcentage deve ser numérico',
+         'percentage.min'      => 'O campo porcentage deve ser igual ou maior que 0',
+         'percentage.max'      => 'O campo porcentage deve ser igual ou menor que 100',
+       ];
+     }
 }

@@ -9,17 +9,23 @@
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.button-href-listar')
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-form-salvar')
-    @include('partials.buttons.button-modal-excluir')
 @endsection
 
 @section('panel-body')
     @include('partials.messages')
-    @include('todos.partials.form')
+    {{ Form::model($formModel, ['route' => [$formActions['update'], $formModel->id]]) }}
+      @include('todos.partials.form')
+      <div class="text-center">
+        <div class="btn-group" >
+          @include('partials.buttons.button-href-cancelar')
+          @include('partials.buttons.button-form-salvar')
+        </div>
+      </div>
+    {{ Form::close() }}
+    <br>
 @endsection
 
 @section('scripts')

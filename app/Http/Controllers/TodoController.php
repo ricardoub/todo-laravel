@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TodoFormRequest;
 use Auth;
 
 use App\User;
@@ -35,7 +36,8 @@ class TodoController extends Controller
     return $formActions;
   }
 
-  private function findTodo($id) {
+  private function findTodo($id)
+  {
     return Todo::find($id);
   }
 
@@ -48,7 +50,7 @@ class TodoController extends Controller
   {
     $buttonHrefs  = $this->getButtonHrefs();
 
-    $todos = Todo::where('user_id', Auth::user()->id)->paginate(10);
+    $todos = Todo::where('user_id', Auth::user()->id)->orderby('priority')->paginate(10);
     return view('todos.index')
       ->with([
         'listModels'  => $todos,
@@ -121,7 +123,7 @@ class TodoController extends Controller
         ->withErros(['Registro não localizado']);
     }
 
-    return view('todos.show')
+    return view('todos.edit')
       ->with([
         'formModel'    => $todo,
         'formActions'  => $formActions,
@@ -136,9 +138,25 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TodoFormRequest $request, $id)
     {
-        //
+      $formActions = $this->getFormActions();
+      $input = \Request::all();
+      extract($input);
+
+      $todo = $this->findTodo($id);
+      if (is_null($todo)) {
+        return redirect()->route($formActions['index'])
+          ->withErrors(['Registro não localizado!']);
+      }
+
+      $todo->name       = $name;
+      $todo->priority   = $priority;
+      $todo->percentage = $percentage;
+      $todo->save();
+
+      return redirect()->route($formActions['index'])
+        ->with('msgSuccess', "Registro atualizado com sucesso!");
     }
 
     /**

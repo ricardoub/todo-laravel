@@ -187,7 +187,7 @@ class ComboController extends Controller
     $combo->option = $option;
     $combo->save();
 
-    return redirect()->route($formActions['index'], $id)
+    return redirect()->route($formActions['index'])
       ->with('msgSuccess', "Registro atualizado com sucesso!");
   }
 
@@ -204,7 +204,8 @@ class ComboController extends Controller
 
     $combo = $this->findCombo($id);
     if (is_null($combo)) {
-      return redirect()->route('combos.index')->withErrors(['Registro não localizado!']);
+      return redirect()->route('combos.index')
+        ->withErrors(['Registro não localizado!']);
     }
 
     return view('admin.combos.delete')
