@@ -18,6 +18,7 @@ class CreateTodosTable extends Migration
             $table->string('name');
             $table->integer('priority');
             $table->integer('percentage');
+            $table->integer('status');
             $table->timestamps();
             $table->unsignedInteger('user_id');
         });
