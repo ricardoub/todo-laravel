@@ -4,12 +4,15 @@
   <button type="button" class="btn btn-default btn-title" disabled>
     <i class="fa fa-tasks"></i>
     Excluir
-    <span class="hidden-xs hidden-sm"> Tarefa </span>
+    <span class="hidden-xs hidden-sm">
+      Tarefa
+      <small>({{ $formModel->id }})</small>
+    </span>
   </button>
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.button-href-listar')
+    @include('partials.buttons.panelButton-voltar-index')
 @endsection
 
 @section('panel-head-right')
@@ -17,11 +20,11 @@
 
 @section('panel-body')
     @include('partials.messages')
-    {{ Form::model($formModel, ['route' => [$formActions['destroy'], $formModel->id]]) }}
+    {{ Form::model($formModel, ['route' => [$actions['formAction']['destroy'], $formModel->id]]) }}
       @include('todos.partials.form')
       <div class="text-center">
         <div class="btn-group" >
-          @include('partials.buttons.button-excluir-form')
+          @include('partials.buttons.formButton-excluir')
         </div>
       </div>
     {{ Form::close() }}

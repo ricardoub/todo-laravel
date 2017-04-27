@@ -17,11 +17,11 @@
 
 @section('panel-body')
     @include('partials.messages')
-    {{ Form::model($formModel, ['route' => $formActions['store']]) }}
+    {{ Form::model($formModel, ['route' => $actions['formAction']['store']]) }}
       @include('todos.partials.form')
       <div class="text-center">
         <div class="btn-group" >
-          @include('partials.buttons.button-form-salvar')
+          @include('partials.buttons.formButton-salvar')
         </div>
       </div>
     {{ Form::close() }}

@@ -10,29 +10,31 @@ use App\Combo;
 class ComboController extends Controller
 {
 
-  private function getButtonHrefs()
+  private function getActions()
   {
-    $buttonHrefs['home']     = 'home';
-    $buttonHrefs['listar']   = 'combos.index';
-    $buttonHrefs['incluir']  = 'combos.create';
-    $buttonHrefs['excluir']  = 'combos.delete';
-    $buttonHrefs['exibir']   = 'combos.show';
-    $buttonHrefs['editar']   = 'combos.edit';
-    $buttonHrefs['cancelar'] = 'combos.show';
+    $actions['panelButton']['home']         = 'home';
+    $actions['panelButton']['voltarIndex']  = 'combos.index';
+    $actions['panelButton']['incluir']      = 'combos.create';
+    $actions['panelButton']['editar']       = 'combos.edit';
+    $actions['formButton']['cancelarIndex'] = 'combos.index';
+    $actions['formButton']['cancelarShow']  = 'combos.show';
+    $actions['tableButton']['exibir']       = 'combos.show';
+    $actions['tableButton']['excluir']      = 'combos.delete';
 
+    $actions['formAction']['edit']        = 'disabled';
+    $actions['formAction']['index']       = 'combos.index';
+    $actions['formAction']['store']       = 'combos.store';
+    $actions['formAction']['update']      = 'combos.update';
+    $actions['formAction']['destroy']     = 'combos.destroy';
 
-    return $buttonHrefs;
+    return $actions;
   }
 
-  private function getFormActions()
+  private function getOptions()
   {
-    $formActions['edit']    = 'disabled';
-    $formActions['index']   = 'combos.index';
-    $formActions['store']   = 'combos.store';
-    $formActions['update']  = 'combos.update';
-    $formActions['destroy'] = 'combos.destroy';
+    $options['formOption']['edit'] = 'disabled';
 
-    return $formActions;
+    return $options;
   }
 
   private function findCombo($id) {
@@ -48,11 +50,10 @@ class ComboController extends Controller
   {
     $combos = Combo::paginate(10);
 
-    //return view('admin.combos.index')->with(compact('combos'));
     return view('admin.combos.index')
       ->with([
-        'listModels'  => $combos,
-        'buttonHrefs' => $this->getButtonHrefs(),
+        'listModels' => $combos,
+        'actions'    => $this->getActions(),
       ]);
   }
 
@@ -63,30 +64,17 @@ class ComboController extends Controller
    */
   public function create()
   {
-    $buttonHrefs  = $this->getButtonHrefs();
-    $formActions  = $this->getFormActions();
-    $formActions['edit'] = null;
+    $options = $this->getOptions();
+    $options['formOption']['edit'] = null;
+
     $combo = new \App\Combo();
 
     return view('admin.combos.create')
       ->with([
-        'formModel'    => $combo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'formModel' => $combo,
+        'actions'   => $this->getActions(),
+        'options'   => $options,
       ]);
-
-      /*
-      $todo = new \Todo\Todo();
-      $todo->name = null;
-      $todo->order = null;
-      $todo->percentage = null;
-      $todo->important = null;
-      $todo->urgent  = null;
-      $todo->user_id = $user->id;
-
-      return view('todos.create')
-        ->with(compact('formEdit','todo', 'comboOptions'));
-      */
   }
 
   /**
@@ -97,7 +85,7 @@ class ComboController extends Controller
    */
   public function store(ComboFormRequest $request)
   {
-    $formActions = $this->getFormActions();
+    $actions = $this->getActions();
     $input = \Request::except('_token');
     extract($input);
 
@@ -107,9 +95,7 @@ class ComboController extends Controller
     $combo->value = $value;
     $combo->save();
 
-    //return redirect()->route('todos.index')->with('msgSuccess', "Registro incluído com sucesso!");
-
-    return redirect()->route($formActions['index'])
+    return redirect()->route($actions['formAction']['index'])
       ->with('msgSuccess', "Registro incluído com sucesso!");
   }
 
@@ -121,19 +107,17 @@ class ComboController extends Controller
    */
   public function show($id)
   {
-    $formActions  = $this->getFormActions();
-    $buttonHrefs  = $this->getButtonHrefs();
-
     $combo = $this->findCombo($id);
     if (is_null($combo)) {
-      return redirect()->route('combos.index')->withErrors(['Registro não localizado!']);
+      return redirect()->route($actions['formAction']['index'])
+        ->withErrors(['Registro não localizado!']);
     }
 
     return view('admin.combos.show')
       ->with([
-        'formModel'    => $combo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'formModel' => $combo,
+        'actions'   => $this->getActions(),
+        'options'   => $this->getOptions(),
       ]);
   }
 
@@ -145,21 +129,21 @@ class ComboController extends Controller
    */
   public function edit($id)
   {
-    $buttonHrefs  = $this->getButtonHrefs();
-    $formActions  = $this->getFormActions();
-    $formActions['edit'] = null;
+    $options = $this->getOptions();
+    $options['formOption']['edit'] = null;
+
     $combo = $this->findCombo($id);
 
     if (is_null($combo)) {
-      return redirect()->route($formActions['index'])
+      return redirect()->route($actions['formAction']['index'])
         ->withErrors(['Registro não localizado!']);
     }
 
     return view('admin.combos.edit')
       ->with([
-        'formModel'    => $combo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'formModel' => $combo,
+        'actions'   => $this->getActions(),
+        'options'   => $options,
       ]);
   }
 
@@ -172,13 +156,13 @@ class ComboController extends Controller
    */
   public function update(ComboFormRequest $request, $id)
   {
-    $formActions = $this->getFormActions();
+    $actions = $this->getActions();
     $input = \Request::all();
     extract($input);
 
     $combo = $this->findCombo($id);
     if (is_null($combo)) {
-      return redirect()->route($formActions['index'])
+      return redirect()->route($actions['formAction']['index'])
         ->withErrors(['Registro não localizado!']);
     }
 
@@ -187,7 +171,7 @@ class ComboController extends Controller
     $combo->option = $option;
     $combo->save();
 
-    return redirect()->route($formActions['index'])
+    return redirect()->route($actions['formAction']['index'])
       ->with('msgSuccess', "Registro atualizado com sucesso!");
   }
 
@@ -199,20 +183,17 @@ class ComboController extends Controller
    */
   public function delete($id)
   {
-    $formActions  = $this->getFormActions();
-    $buttonHrefs  = $this->getButtonHrefs();
-
     $combo = $this->findCombo($id);
     if (is_null($combo)) {
-      return redirect()->route('combos.index')
+      return redirect()->route($actions['formAction']['index'])
         ->withErrors(['Registro não localizado!']);
     }
 
     return view('admin.combos.delete')
       ->with([
-        'formModel'    => $combo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'formModel' => $combo,
+        'actions'   => $this->getActions(),
+        'options'   => $this->getOptions(),
       ]);
   }
 
@@ -224,22 +205,22 @@ class ComboController extends Controller
    */
   public function destroy($id)
   {
-    $formActions = $this->getFormActions();
+    $actions = $this->getActions();
 
     $combo = $this->findCombo($id);
 
     if (is_null($combo)) {
-      return redirect()->route($formActions['index'])
+      return redirect()->route($actions['formAction']['index'])
         ->withErrors(['Registro não localizado!']);
     }
 
     $result = $combo->delete();
     if (!$result) {
-      return redirect()->route($formActions['index'])
+      return redirect()->route($actions['formAction']['index'])
         ->withErrors(['Falha ao excluir o registro!']);
     }
 
-    return redirect()->route($formActions['index'])
+    return redirect()->route($actions['formAction']['index'])
       ->with('msgSuccess', "Registro excluído com sucesso!");
   }
 }
