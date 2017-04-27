@@ -12,38 +12,44 @@ use App\Combo;
 
 class TodoController extends Controller
 {
+  private $actions = array();
 
-  private function getButtonHrefs()
+
+  private function getActions()
   {
-    $buttonHrefs['home']     = 'home';
-    $buttonHrefs['listar']   = 'todos.index';
-    $buttonHrefs['incluir']  = 'todos.create';
-    $buttonHrefs['excluir']  = 'todos.delete';
-    $buttonHrefs['exibir']   = 'todos.show';
-    $buttonHrefs['editar']   = 'todos.edit';
-    $buttonHrefs['cancelar'] = 'todos.show';
+    $actions['panelButton']['home']         = 'home';
+    $actions['panelButton']['voltarIndex']  = 'todos.index';
+    $actions['panelButton']['incluir']      = 'todos.create';
+    $actions['panelButton']['editar']       = 'todos.edit';
+    $actions['formButton']['cancelarIndex'] = 'todos.index';
+    $actions['formButton']['cancelarShow']  = 'todos.show';
+    $actions['tableButton']['exibir']       = 'todos.show';
+    $actions['tableButton']['excluir']      = 'todos.delete';
 
-    return $buttonHrefs;
+    $actions['formAction']['index']       = 'todos.index';
+    $actions['formAction']['store']       = 'todos.store';
+    $actions['formAction']['update']      = 'todos.update';
+    $actions['formAction']['destroy']     = 'todos.destroy';
+
+    return $actions;
   }
 
-  private function getFormActions()
+  private function getOptions()
   {
-    $formActions['edit']    = 'disabled';
-    $formActions['index']   = 'todos.index';
-    $formActions['store']   = 'todos.store';
-    $formActions['update']  = 'todos.update';
-    $formActions['destroy'] = 'todos.destroy';
+    $options['formOption']['edit'] = 'disabled';
 
-    return $formActions;
+    return $options;
   }
 
-  private function getFormMessages()
+  private function getMessages()
   {
-    $formMessages['success']['store']  = 'Registro incluído com sucesso!';
-    $formMessages['success']['update'] = 'Registro atualizado com sucesso!';
-    $formMessages['success']['delete'] = 'Registro excluído com sucesso!';
-    $formMessages['error']['find']     = 'Registro não localizado!';
-    $formMessages['error']['delete']   = 'Falha ao excluir o registro!';
+    $messages['success']['store']  = 'Registro incluído com sucesso!';
+    $messages['success']['update'] = 'Registro atualizado com sucesso!';
+    $messages['success']['delete'] = 'Registro excluído com sucesso!';
+    $messages['error']['find']     = 'Registro não localizado!';
+    $messages['error']['delete']   = 'Falha ao excluir o registro!';
+
+    return $messages;
   }
 
   private function getComboOptions()
@@ -57,7 +63,6 @@ class TodoController extends Controller
     return $comboOptions;
   }
 
-
   private function findTodo($id)
   {
     return Todo::find($id);
@@ -70,14 +75,16 @@ class TodoController extends Controller
    */
   public function index()
   {
-    $buttonHrefs  = $this->getButtonHrefs();
     $comboOptions = $this->getComboOptions();
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
 
     $todos = Todo::where('user_id', Auth::user()->id)->orderby('priority')->paginate(10);
+
     return view('todos.index')
       ->with([
-        'listModels'  => $todos,
-        'buttonHrefs' => $buttonHrefs,
+        'listModels'   => $todos,
+        'actions'      => $actions,
         'comboOptions' => $comboOptions,
       ]);
   }
@@ -89,20 +96,21 @@ class TodoController extends Controller
    */
   public function create()
   {
-      $buttonHrefs  = $this->getButtonHrefs();
-      $formActions  = $this->getFormActions();
-      $comboOptions = $this->getComboOptions();
-      $formActions['edit'] = null;
+    $comboOptions = $this->getComboOptions();
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
+    $options  = $this->getOptions();
+    $options['formOption']['edit'] = null;
 
-      $todo = new \App\Todo();
+    $todo = new \App\Todo();
 
-      return view('todos.create')
-        ->with([
-          'formModel'    => $todo,
-          'formActions'  => $formActions,
-          'buttonHrefs'  => $buttonHrefs,
-          'comboOptions' => $comboOptions,
-        ]);
+    return view('todos.create')
+      ->with([
+        'formModel'    => $todo,
+        'actions'      => $actions,
+        'options'      => $options,
+        'comboOptions' => $comboOptions,
+      ]);
     }
 
   /**
@@ -113,9 +121,10 @@ class TodoController extends Controller
    */
   public function show($id)
   {
-    $buttonHrefs  = $this->getButtonHrefs();
-    $formActions  = $this->getFormActions();
     $comboOptions = $this->getComboOptions();
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
+    $options  = $this->getOptions();
 
     $todo = $this->findTodo($id);
     if (is_null($todo)) {
@@ -126,8 +135,8 @@ class TodoController extends Controller
     return view('todos.show')
       ->with([
         'formModel'    => $todo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'actions'      => $actions,
+        'options'      => $options,
         'comboOptions' => $comboOptions,
       ]);
   }
@@ -140,10 +149,11 @@ class TodoController extends Controller
    */
   public function edit($id)
   {
-    $buttonHrefs  = $this->getButtonHrefs();
-    $formActions  = $this->getFormActions();
     $comboOptions = $this->getComboOptions();
-    $formActions['edit'] = null;
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
+    $options  = $this->getOptions();
+    $options['formOption']['edit'] = null;
 
     $todo = Todo::find($id);
     if (is_null($todo)) {
@@ -154,8 +164,8 @@ class TodoController extends Controller
     return view('todos.edit')
       ->with([
         'formModel'    => $todo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'actions'      => $actions,
+        'options'      => $options,
         'comboOptions' => $comboOptions,
       ]);
   }
@@ -168,21 +178,22 @@ class TodoController extends Controller
    */
   public function delete($id)
   {
-    $formActions  = $this->getFormActions();
-    $buttonHrefs  = $this->getButtonHrefs();
     $comboOptions = $this->getComboOptions();
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
+    $options  = $this->getOptions();
 
     $todo = $this->findTodo($id);
     if (is_null($todo)) {
-      return redirect()->route($formActions['index'])
-        ->withErrors([$formMessages['error']['find']]);
+      return redirect()->route($actions['formAction']['index'])
+        ->withErrors([$messages['error']['find']]);
     }
 
     return view('todos.delete')
       ->with([
         'formModel'    => $todo,
-        'formActions'  => $formActions,
-        'buttonHrefs'  => $buttonHrefs,
+        'actions'      => $actions,
+        'options'      => $options,
         'comboOptions' => $comboOptions,
       ]);
   }
@@ -195,8 +206,9 @@ class TodoController extends Controller
    */
   public function store(TodoFormRequest $request)
   {
-    $formActions  = $this->getFormActions();
-    $formMessages = $this->getFormMessages();
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
+
     $input = \Request::except('_token');
     extract($input);
 
@@ -208,8 +220,8 @@ class TodoController extends Controller
     $todo->user_id    = $user_id;
     $todo->save();
 
-    return redirect()->route($formActions['index'])
-      ->with('msgSuccess', $formMessages['success']['store']);
+    return redirect()->route($actions['formAction']['index'])
+      ->with('msgSuccess', $messages['success']['store']);
   }
 
   /**
@@ -221,15 +233,16 @@ class TodoController extends Controller
    */
   public function update(TodoFormRequest $request, $id)
   {
-    $formActions = $this->getFormActions();
-    $formMessages = $this->getFormMessages();
+    $actions = $this->getActions();
+    $messages = $this->getMessages();
+
     $input = \Request::all();
     extract($input);
 
     $todo = $this->findTodo($id);
     if (is_null($todo)) {
-      return redirect()->route($formActions['index'])
-        ->withErrors([$formMessages['error']['find']]);
+      return redirect()->route($actions['formAction']['index'])
+        ->withErrors([$messages['error']['find']]);
     }
 
     $todo->name       = $name;
@@ -239,8 +252,8 @@ class TodoController extends Controller
     $todo->user_id    = $user_id;
     $todo->save();
 
-    return redirect()->route($formActions['index'])
-      ->with('msgSuccess', $formMessages['success']['update']);
+    return redirect()->route($actions['formAction']['index'])
+      ->with('msgSuccess', $messages['success']['update']);
   }
 
   /**
@@ -251,23 +264,23 @@ class TodoController extends Controller
    */
   public function destroy($id)
   {
-    $formActions  = $this->getFormActions();
-    $formMessages = $this->getFormMessages();
+    $actions  = $this->getActions();
+    $messages = $this->getMessages();
 
     $todo = $this->findTodo($id);
 
     if (is_null($todo)) {
-      return redirect()->route($formActions['index'])
-        ->withErrors([$formMessages['error']['find']]);
+      return redirect()->route($actions['formAction']['index'])
+        ->withErrors([$messages['error']['find']]);
     }
 
     $result = $todo->delete();
     if (!$result) {
-      return redirect()->route($formActions['index'])
-        ->withErrors([$formMessages['error']['delete']]);
+      return redirect()->route($actions['formAction']['index'])
+        ->withErrors([$messages['error']['delete']]);
     }
 
-    return redirect()->route($formActions['index'])
-      ->with('msgSuccess', $formMessages['success']['delete']);
+    return redirect()->route($actions['formAction']['index'])
+      ->with('msgSuccess', $messages['success']['delete']);
   }
 }

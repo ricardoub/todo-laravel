@@ -4,7 +4,10 @@
     <button type="button" class="btn btn-default btn-title" disabled>
         <i class="fa fa-tasks"></i>
         Editar
-        <span class="hidden-xs hidden-sm"> Tarefa </span>
+        <span class="hidden-xs hidden-sm">
+          Combo 
+          <small>({{ $formModel->id }})</small>
+        </span>
     </button>
 @endsection
 
@@ -16,12 +19,12 @@
 
 @section('panel-body')
     @include('partials.messages')
-    {{ Form::model($formModel, ['route' => [$formActions['update'], $formModel->id]]) }}
+    {{ Form::model($formModel, ['route' => [$actions['formAction']['update'], $formModel->id]]) }}
       @include('admin.combos.partials.form')
       <div class="text-center">
         <div class="btn-group" >
-          @include('partials.buttons.button-cancelar-form')
-          @include('partials.buttons.button-salvar-form')
+          @include('partials.buttons.formButton-cancelar-show')
+          @include('partials.buttons.formButton-salvar')
         </div>
       </div>
     {{ Form::close() }}
