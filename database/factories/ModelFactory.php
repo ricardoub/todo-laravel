@@ -28,7 +28,8 @@ $factory->define(App\Todo::class, function (Faker\Generator $faker) {
     return [
         'name'       => $faker->text($maxNbChars = 100),
         'priority'   => $faker->unique->numberBetween(1,20),
-        'percentage' => $faker->numberBetween(10,100),
+        'percentage' => (10*$faker->numberBetween(0,10)),
+        'status'     => $faker->numberBetween(1,6),
         'user_id'    => $faker->numberBetween(1,3),
     ];
 });

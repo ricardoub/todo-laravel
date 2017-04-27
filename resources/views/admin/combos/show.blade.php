@@ -4,17 +4,19 @@
     <button type="button" class="btn btn-default btn-title" disabled>
         <i class="fa fa-tasks"></i>
         Exibir
-        <span class="hidden-xs hidden-sm"> Tarefa </span>
+        <span class="hidden-xs hidden-sm">
+          Combo
+          <small>({{ $formModel->id }})</small>
+        </span>
     </button>
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.button-href-listar')
+    @include('partials.buttons.panelButton-voltarIndex')
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-href-editar')
-    @include('partials.buttons.button-href-excluir')
+    @include('partials.buttons.panelButton-editar')
 @endsection
 
 @section('panel-body')

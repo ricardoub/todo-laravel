@@ -11,8 +11,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <!--link href="{{ asset('css/app.css') }}" rel="stylesheet"-->
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-submenu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app-class.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>

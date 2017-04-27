@@ -26,7 +26,7 @@ Route::group(['prefix' => 'todos', 'as' => 'todos.'], function() {
   Route::get('show/{id}',    ['as' => 'show',    'uses' => 'TodoController@show']);
   Route::get('edit/{id}',    ['as' => 'edit',    'uses' => 'TodoController@edit']);
   Route::post('update/{id}', ['as' => 'update',  'uses' => 'TodoController@update']);
-  Route::get('delete/{id}',  ['as' => 'delete',  'uses' => 'TodoController@edelete']);
+  Route::get('delete/{id}',  ['as' => 'delete',  'uses' => 'TodoController@delete']);
   Route::post('destroy/{id}',['as' => 'destroy', 'uses' => 'TodoController@destroy']);
 });
 

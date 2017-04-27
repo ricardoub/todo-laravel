@@ -9,11 +9,11 @@
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.button-href-home')
+    @include('partials.buttons.panelButton-home')
 @endsection
 
 @section('panel-head-right')
-    @include('partials.buttons.button-href-incluir')
+    @include('partials.buttons.panelButton-incluir')
 @endsection
 
 @section('panel-body')

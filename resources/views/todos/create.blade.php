@@ -9,6 +9,7 @@
 @endsection
 
 @section('panel-head-left')
+  @include('partials.buttons.button-href-listar')
 @endsection
 
 @section('panel-head-right')
@@ -16,11 +17,10 @@
 
 @section('panel-body')
     @include('partials.messages')
-    {{ Form::open(['route' => [$actions['formAction']['store']]]) }}
-      @include('admin.combos.partials.form')
+    {{ Form::model($formModel, ['route' => $actions['formAction']['store']]) }}
+      @include('todos.partials.form')
       <div class="text-center">
         <div class="btn-group" >
-          @include('partials.buttons.formButton-voltarIndex')
           @include('partials.buttons.formButton-salvar')
         </div>
       </div>
