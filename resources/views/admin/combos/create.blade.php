@@ -20,7 +20,7 @@
       @include('admin.combos.partials.form')
       <div class="text-center">
         <div class="btn-group" >
-          @include('partials.buttons.formButton-voltarIndex')
+          @include('partials.buttons.formButton-cancelar-index')
           @include('partials.buttons.formButton-salvar')
         </div>
       </div>
