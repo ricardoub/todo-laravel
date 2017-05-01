@@ -90,7 +90,7 @@ class AclSeeder extends Seeder
     $userAdvanced = User::where('name', '=', 'Usuario2')->first();
     $userAdvanced->roles()->attach($todoRole->id);
     $userAdvanced->roles()->attach($todoCommonRole->id);
-    $userAdvanced->roles()->attach($todoAdvancedRole->id);
+    //$userAdvanced->roles()->attach($todoAdvancedRole->id);
     $userAdvanced->roles()->attach($registerRole->id);
 
     $userAdmin = User::where('name', '=', 'Administrador')->first();
