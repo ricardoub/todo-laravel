@@ -9,7 +9,7 @@
 @endsection
 
 @section('panel-head-left')
-  @include('partials.buttons.button-href-listar')
+  @include('partials.buttons.panelButton-voltar-index')
 @endsection
 
 @section('panel-head-right')

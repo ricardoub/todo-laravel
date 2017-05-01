@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-default btn-title" disabled>
         <i class="fa fa-tasks"></i>
         Listar
-        <span class="hidden-xs hidden-sm"> Todo's </span>
+        <span class="hidden-xs hidden-sm"> Tarefas </span>
     </button>
 @endsection
 
@@ -13,7 +13,9 @@
 @endsection
 
 @section('panel-head-right')
+  @permission('todo-create')
     @include('partials.buttons.panelButton-incluir')
+  @endpermission
 @endsection
 
 @section('panel-body')
