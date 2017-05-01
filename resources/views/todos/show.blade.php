@@ -16,7 +16,9 @@
 @endsection
 
 @section('panel-head-right')
+  @permission('todo-edit')
     @include('partials.buttons.panelButton-editar')
+  @endpermission
 @endsection
 
 @section('panel-body')

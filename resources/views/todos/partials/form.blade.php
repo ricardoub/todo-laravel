@@ -21,10 +21,17 @@
           <span class="input-group-addon">
             <i class="fa fa-user fa-fw"></i>
           </span>
+
           @if (!$options['formOption']['edit'])
-            {{ Form::select('user_id', $comboOptions['users'], $formModel->user_id, ['class' => 'form-control', 'disabled' => $options['formOption']['edit'] ]) }}
+            @permission('todo-owner')
+              {{ Form::select('user_id', $comboOptions['users'], $formModel->user_id, ['class' => 'form-control', 'disabled' => $options['formOption']['edit'] ]) }}
+            @else
+              {{ Form::text('user_name', $comboOptions['users'][$formModel->user_id], ['class' => 'form-control', 'placeholder' => 'Nome da opção', 'disabled' => !$options['formOption']['edit'] ]) }}
+              {{ Form::hidden('user_id', $formModel->user_id, array('id' => 'user_id')) }}
+            @endpermission
           @else
-            {{ Form::text('user_id', $comboOptions['users'][$formModel->user_id], ['class' => 'form-control', 'placeholder' => 'Nome da opção', 'disabled' => $options['formOption']['edit'] ]) }}
+            {{ Form::text('user_name', $comboOptions['users'][$formModel->user_id], ['class' => 'form-control', 'placeholder' => 'Nome da opção', 'disabled' => $options['formOption']['edit'] ]) }}
+            {{ Form::hidden('user_id', $formModel->user_id, array('id' => 'user_id')) }}
           @endif
         </div>
       </div>

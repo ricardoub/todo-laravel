@@ -103,6 +103,7 @@ class TodoController extends Controller
     $options['formOption']['edit'] = null;
 
     $todo = new \App\Todo();
+    $todo->user_id = Auth::user()->id;
 
     return view('todos.create')
       ->with([
@@ -111,7 +112,9 @@ class TodoController extends Controller
         'options'      => $options,
         'comboOptions' => $comboOptions,
       ]);
-    }
+
+
+  }
 
   /**
    * Display the specified resource.
