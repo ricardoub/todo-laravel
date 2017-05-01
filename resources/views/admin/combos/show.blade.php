@@ -12,7 +12,7 @@
 @endsection
 
 @section('panel-head-left')
-    @include('partials.buttons.panelButton-voltarIndex')
+    @include('partials.buttons.panelButton-voltar-index')
 @endsection
 
 @section('panel-head-right')

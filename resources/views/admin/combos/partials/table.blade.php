@@ -26,8 +26,12 @@
           </td>
           <td data-label="Ações">
             <span class="input-group-btn input-group">
-              @include('partials.buttons.tableButton-exibir')
-              @include('partials.buttons.tableButton-excluir')
+              @permission('combo-show')
+                @include('partials.buttons.tableButton-exibir')
+              @endpermission
+              @permission('combo-delete')
+                @include('partials.buttons.tableButton-excluir')
+              @endpermission
             </span>
           </td>
         </tr>

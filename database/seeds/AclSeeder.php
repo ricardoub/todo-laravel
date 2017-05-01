@@ -60,9 +60,9 @@ class AclSeeder extends Seeder
     $todoRole->attachPermissions(
       array($todoIndex, $todoShow));
     $todoCommonRole->attachPermissions(
-      array($todoCreate, $todoEdit));
+      array($todoCreate, $todoEdit, $todoDelete));
     $todoAdvancedRole->attachPermissions(
-      array($todoDelete, $todoOwner));
+      array($todoOwner));
 
     $registerRole->attachPermissions(
       array(
@@ -80,7 +80,7 @@ class AclSeeder extends Seeder
         $todoAdmin, $userAdmin));
 
     /*
-     * USERS 
+     * USERS
      */
 
     $userCommon = User::where('name', '=', 'Usuario1')->first();
@@ -90,7 +90,7 @@ class AclSeeder extends Seeder
     $userAdvanced = User::where('name', '=', 'Usuario2')->first();
     $userAdvanced->roles()->attach($todoRole->id);
     $userAdvanced->roles()->attach($todoCommonRole->id);
-    $userAdvanced->roles()->attach($todoAdvancedRole->id);
+    //$userAdvanced->roles()->attach($todoAdvancedRole->id);
     $userAdvanced->roles()->attach($registerRole->id);
 
     $userAdmin = User::where('name', '=', 'Administrador')->first();
